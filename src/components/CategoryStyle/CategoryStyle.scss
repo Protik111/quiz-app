@@ -1,0 +1,28 @@
+@import '../../Styles/Variables';
+
+.category-container{
+    // border: 1px solid black;
+    position: relative;
+    cursor: pointer;
+    
+    .category-name{
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        color: $button-color;
+    }
+
+    .category-image img{
+        width: 270px;
+        height: 273px;
+        border-radius: 7px;
+        transition: all 0.3s ease;
+        border: 1px solid $header-bg;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+}

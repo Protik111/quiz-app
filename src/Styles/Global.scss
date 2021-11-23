@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* overflow: hidden; */
+}
+
+html{
+    font-family: 'Open Sans', sans-serif;
+    // font-size: 62.5%;
+}
+a{
+    text-decoration: none;
+}

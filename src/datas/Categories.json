@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Animal",
+        "image": "https://i.ibb.co/84qWyYC/animal.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Computers",
+        "image": "https://i.ibb.co/r66vFkQ/computers.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Gadget",
+        "image": "https://i.ibb.co/TbRdsBv/gadget.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Geography",
+        "image": "https://i.ibb.co/PrKtcQS/geography.jpg"
+    },
+    {
+        "id": 5,
+        "name": "History",
+        "image": "https://i.ibb.co/GMvskvT/history.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Mathmatics",
+        "image": "https://i.ibb.co/r38FtKP/mathmatics.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Musical",
+        "image": "https://i.ibb.co/jkQ21T1/musical.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Mythology",
+        "image": "https://i.ibb.co/Hnpbprm/mythology.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Sports",
+        "image": "https://i.ibb.co/93pM2qV/sports.jpg"
+    }
+]
