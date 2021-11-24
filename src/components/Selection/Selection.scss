@@ -8,10 +8,10 @@
         top: 12rem;
         left: 50%;
         transform: translate(-50%, -50%);
-        margin-top: 7rem;
+        margin-top: 9rem;
 
         @media (max-width: 488px){
-            margin-top: 11rem;
+            margin-top: 14rem;
         }
 
         .nameInput{
@@ -27,6 +27,9 @@
             // outline: none;
             font-size: large;
             border: none;
+        }
+        .activeBtn{
+            background-color: $button-bottom;
         }
     }
 }
