@@ -4,7 +4,8 @@ import logo from '../../images/logo.png';
 import { FcNext } from 'react-icons/fc';
 import { HiMenuAlt1 } from 'react-icons/hi';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const {getStarted} = props;
     return (
         <nav className="navbar container-fluid">
             <div className="nav-logo offset-lg-1">
@@ -17,11 +18,12 @@ const Navbar = () => {
                     <i className="fas fa-bars"></i>
                 </label>
             </div>
-            <ul className="">
+            <ul className={`${getStarted} === ${false} ? getStartedWith : ''`}>
                 <li><a href="#results">Results</a></li>
-                <li><a href="#get started">Get Started<FcNext></FcNext></a></li>
+                {
+                    getStarted === false ? '' : <li><a href="#get started">Get Started<FcNext></FcNext></a></li>
+                }
             </ul>
-            <p className="display">display block</p>
         </nav>
     );
 };

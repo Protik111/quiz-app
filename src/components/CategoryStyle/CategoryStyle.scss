@@ -7,7 +7,8 @@
     
     .category-name{
         position: absolute;
-        bottom: 0;
+        // width: 70%;
+        bottom: -25px;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 3;
@@ -15,11 +16,11 @@
     }
 
     .category-image img{
-        width: 270px;
+        width: 268px;
         height: 273px;
         border-radius: 7px;
         transition: all 0.3s ease;
-        border: 1px solid $header-bg;
+        // border: 1px solid $header-bg;
 
         &:hover{
             transform: scale(1.1);

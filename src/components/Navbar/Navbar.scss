@@ -64,7 +64,7 @@
             left: 0;
             background-color: rgb(23, 125, 134);
             /* opacity: 2; */
-            height: 17%;
+            height: 100%;
             width: 100%;
             display: block;
             text-align: center;
@@ -72,7 +72,25 @@
             z-index: 1;
 
             & li:first-child{
-                margin-top: 20px;
+                margin-top: 1px;
+            }
+        }
+
+        .getStartedWith{
+            position: absolute;
+            top: 6.5rem;
+            left: 0;
+            background-color: rgb(23, 125, 134);
+            /* opacity: 2; */
+            height: 85%;
+            width: 100%;
+            display: block;
+            text-align: center;
+            transition: all 0.5s ease;
+            z-index: 1;
+
+            & li:first-child{
+                margin-top: 15px;
             }
         }
         
