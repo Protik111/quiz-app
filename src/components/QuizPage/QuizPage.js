@@ -4,6 +4,11 @@ const QuizPage = () => {
     return (
         <div>
             <h3>THis is quiz </h3>
+            <h3>THis is quiz </h3>
+            <h3>THis is quiz </h3>
+            <h3>THis is quiz </h3>
+            <h3>THis is quiz </h3>
+
         </div>
     );
 };

@@ -3,14 +3,15 @@ import '../Navbar/Navbar.scss';
 import logo from '../../images/logo.png';
 import { FcNext } from 'react-icons/fc';
 import { HiMenuAlt1 } from 'react-icons/hi';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = (props) => {
     const {getStarted} = props;
     return (
         <nav className="navbar container-fluid">
-            <div className="nav-logo offset-lg-1">
+            <NavLink to="/" className="nav-logo offset-lg-1">
                 <img src={logo} alt="" />
-            </div>
+            </NavLink>
             <div>
                 <input type="checkbox" name="" id="menu-check" className="menu-check" />
                 <label for="menu-check" className="hamberger">
