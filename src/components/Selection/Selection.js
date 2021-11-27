@@ -1,19 +1,22 @@
 import React, { useContext, useState } from 'react';
 import './Selection.scss';
 import Navbar from '../Navbar/Navbar';
-import { FcNext } from 'react-icons/fc';
 import { useNavigate, useParams } from 'react-router';
 import { UserContext } from '../../App';
 import useFetch from '../../hooks/useFetch';
 import { useDispatch, useSelector } from 'react-redux';
+import { Box } from "@mui/system";
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 
 const Selection = () => {
     const dispath = useDispatch();
     const { question_amount } = useSelector(state => state);
-    console.log(question_amount, 'question_amount');
-    
+    // console.log(question_amount, 'question_amount');
+
     const [name, setName] = useContext(UserContext);
+    const [amount, setAmount] = useState(10);
     const [error2, setError2] = useState('');
 
     const { category } = useParams();
@@ -32,8 +35,22 @@ const Selection = () => {
         }
     }
 
-    const { response, error } = useFetch({ url: '/api.php?amount=20'});
-    console.log(response, error, 'from api');
+    const { response, error, loading } = useFetch({ url: '/api_category.php' });
+
+    if (loading) {
+        return (
+            <Box mt={20} sx={{ width: '100%' }}>
+                <LinearProgress />
+            </Box>
+        );
+    }
+
+
+    const difficultyOptions = [
+        { id: "easy", name: "Easy" },
+        { id: "medium", name: "Medium" },
+        { id: "hard", name: "Hard" },
+    ];
 
     return (
         <div className="selection-container">
@@ -41,7 +58,7 @@ const Selection = () => {
 
             <div className="selection-items">
                 <div className="text-center mt-4">
-                    <h4 style={{color: 'red'}}>{error2}</h4>
+                    <h4 style={{ color: 'red' }}>{error2}</h4>
                 </div>
                 <form action="">
                     <div>
@@ -49,33 +66,25 @@ const Selection = () => {
                         <input id="name" className="form-control py-3 px-4 nameInput" type="text" placeholder="Enter Your Name" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
                     <div className="mt-3">
-                        <label for="category" className="form-label">Choose Category</label>
+                        <label for="category" className="form-label">Your Category</label>
                         <select id="category" className="form-select" aria-label="Default select example" onChange={handleOption}>
-                            <option selected value={category}>{category}</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            {/* {response.trivia_categories.map(result => <option>{result.name}</option>)} */}
+                            <option>{category}</option>
                         </select>
                     </div>
 
                     <div className="mt-3">
                         <label for="difficulty" className="form-label">Choose Difficulty</label>
                         <select id="difficulty" className="form-select" aria-label="Default select example">
-                            <option selected>Difficulty</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            {
+                                difficultyOptions.map(option => <option>{option.name}</option>)
+                            }
                         </select>
                     </div>
 
                     <div className="mt-3">
                         <label for="amount" className="form-label">Amount Of Questions</label>
-                        <select id="amount" className="form-select" aria-label="Default select example">
-                            <option selected>Amount</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <input id="amount" className="form-control py-3 px-4 nameInput" type="number" placeholder="Enter Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
                     </div>
 
                     <div className="mt-4">
