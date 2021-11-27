@@ -51,6 +51,9 @@
     .display{
         display: none;
     }
+    .user-name{
+        font-size: 1.8rem;
+    }
 }
 
 @media (max-width: 498px) {
@@ -82,7 +85,7 @@
             left: 0;
             background-color: rgb(23, 125, 134);
             /* opacity: 2; */
-            height: 85%;
+            height: 100%;
             width: 100%;
             display: block;
             text-align: center;

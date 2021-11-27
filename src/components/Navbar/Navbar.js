@@ -4,9 +4,12 @@ import logo from '../../images/logo.png';
 import { FcNext } from 'react-icons/fc';
 import { HiMenuAlt1 } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = (props) => {
-    const {getStarted} = props;
+    const {getStarted, quizPage} = props;
+
+    const { user_name } = useSelector(state => state);
     return (
         <nav className="navbar container-fluid">
             <NavLink to="/" className="nav-logo offset-lg-1">
@@ -22,7 +25,9 @@ const Navbar = (props) => {
             <ul className={`${getStarted} === ${false} ? getStartedWith : ''`}>
                 <li><a href="#results">Results</a></li>
                 {
-                    getStarted === false ? '' : <li><a href="#get started">Get Started<FcNext></FcNext></a></li>
+                    quizPage  === true ? 
+                    <li><a href="#get started" className="user-name">{user_name}</a></li> : 
+                    <li><a href="#get started" onClick={() => alert("Please Choose Options And Start.")}>Get Started<FcNext></FcNext></a></li>
                 }
             </ul>
         </nav>

@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 
 axios.defaults.baseURL = "https://opentdb.com";
 
-const useAxios = ({ url }) => {
+const useFetch = ({ url }) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -40,4 +40,4 @@ const useAxios = ({ url }) => {
   return { response, error, loading };
 };
 
-export default useAxios;
+export default useFetch;

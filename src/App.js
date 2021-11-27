@@ -16,7 +16,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/selection/:category" element={<Selection />} />
+            <Route path="/selection/:category/:apiVal" element={<Selection />} />
             <Route path="/quizPage" element={<QuizPage />}></Route>
           </Routes>
         </BrowserRouter>

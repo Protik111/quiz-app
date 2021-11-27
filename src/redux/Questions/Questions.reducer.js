@@ -1,9 +1,10 @@
 import { ActionTypes } from './Quetions.types';
 
 let initialState = {
-    question_category: '',
-    question_difficulty: '',
-    question_amount: 30
+    question_category: 15,
+    question_difficulty: 'easy',
+    question_amount: 10,
+    user_name: ''
 }
 
 const questionReducer = (state = initialState, action) => {
@@ -22,6 +23,11 @@ const questionReducer = (state = initialState, action) => {
             return {
                 ...state,
                 question_amount: action.payload
+            }
+        case ActionTypes.CHANGE_NAME :
+            return {
+                ...state,
+                user_name: action.payload
             }
         default :
             return state;

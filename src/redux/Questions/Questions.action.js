@@ -20,3 +20,10 @@ export const handleAmountChange = payload => {
         payload
     }
 }
+
+export const handleChangeName = payload => {
+    return {
+        type: ActionTypes.CHANGE_NAME,
+        payload
+    }
+}
