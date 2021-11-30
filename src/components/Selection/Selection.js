@@ -81,11 +81,11 @@ const Selection = () => {
                 </div>
                 <form action="">
                     <div>
-                        <label for="name" className="form-label">Your Name</label>
+                        <label htmlFor="name" className="form-label">Your Name</label>
                         <input id="name" className="form-control py-3 px-4 nameInput" type="text" placeholder="Enter Your Name" value={user_name} onChange={(e) => dispatch(handleChangeName(e.target.value))} />
                     </div>
                     <div className="mt-3">
-                        <label for="category" className="form-label">Your Category</label>
+                        <label htmlFor="category" className="form-label">Your Category</label>
                         <select id="category" className="form-select" aria-label="Default select example" onChange={handleCategory}>
                             {/* {response.trivia_categories.map(result => <option value={result.id}>{result.name}</option>)} */}
                             <option value={category}>{category}</option>
@@ -93,7 +93,7 @@ const Selection = () => {
                     </div>
 
                     <div className="mt-3">
-                        <label for="difficulty" className="form-label">Choose Difficulty</label>
+                        <label htmlFor="difficulty" className="form-label">Choose Difficulty</label>
                         <select id="difficulty" className="form-select" aria-label="Default select example" onChange={handleDifficulty}>
                             {
                                 difficultyOptions.map((option, id) => <option value={option.id} key={id}>{option.name}</option>)
@@ -102,7 +102,7 @@ const Selection = () => {
                     </div>
 
                     <div className="mt-3">
-                        <label for="amount" className="form-label">Amount Of Questions</label>
+                        <label htmlFor="amount" className="form-label">Amount Of Questions</label>
                         <input id="amount" className="form-control py-3 px-4 nameInput" type="number" placeholder="Enter Amount" value={question_amount} onChange={handleAmount} />
                     </div>
 
