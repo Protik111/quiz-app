@@ -45,7 +45,7 @@ const QuizPage = () => {
             options.splice(randomOptions(options.length), 0, question.correct_answer);
             setAllOptions(options);
         }
-    }, [response])
+    }, [response, index])
 
     console.log(allOptions, 'allOptions');
 
@@ -60,43 +60,46 @@ const QuizPage = () => {
     }
 
     const handleCorrect = (e) => {
-        setErr('');
-
-        console.log(e.target.textContent);
         setSelected(e.target.textContent);
 
-        if(selected){            
-            if (e.target.textContent === response.results[index].correct_answer) {
-                setScore(score + 1);
-            }
+        if (e.target.textContent === response.results[index].correct_answer) {
+            setScore(score + 1);
+            console.log('inside score')
         }
+        setErr('');
+
+        // console.log(e.target.textContent, 'e.target.textContent');
+
     }
 
 
-    const handleSelectedColor = (selectedValue) => {
-        console.log(selectedValue, 'e.target.textContent')
-        if (selected === selectedValue && selectedValue === response.results[index].correct_answer) {
-            return "rightAnswer";
-        } else if (selected === selectedValue && selectedValue == !response.results[index].correct_answer) {
-            return "wrongAnswer";
-        } else if (selected = selectedValue) {
-            return "rightAnswer";
-        }
-    }
+    //right and wrong color
+
+    // const handleSelectedColor = (selectedValue) => {
+    //     console.log(selectedValue, 'e.target.textContent')
+    //     if (selected === selectedValue && selectedValue === response.results[index].correct_answer) {
+    //         return "rightAnswer";
+    //     } else if (selected === selectedValue && selectedValue == !response.results[index].correct_answer) {
+    //         return "wrongAnswer";
+    //     } else if (selected = selectedValue) {
+    //         return "rightAnswer";
+    //     }
+    // }
 
 
     const handleQuit = () => {
-        // useFetch({ url : '/api_category.php'})
-        // dis
-        // dispatch(handleCategoryChange(null));
-        // dispatch(handleDifficultyChange(''));
-        // dispatch(handleAmountChange(null));
+        setIndex(0);
         navigate('/');
     }
 
     const handleNext = () => {
         if (selected) {
-            console.log('ds')
+            if (index + 1 < response.results.length) {
+                setIndex(index + 1);
+                setSelected();
+            } else {
+                navigate('/result');
+            }
         } else {
             setErr("Select A Option Then Click Next");
         }
@@ -110,11 +113,11 @@ const QuizPage = () => {
             <Navbar quizPage={true} />
 
             <div className="category-score container mt-5">
-                <div>
-                    <h2>{category}</h2>
+                <div className="category">
+                    <h2>Topic : {category}</h2>
                 </div>
                 <div>
-                    <h2>Score :</h2>
+                    <h2>Score : {score}/{" "+ question_amount}</h2>
                 </div>
             </div>
 

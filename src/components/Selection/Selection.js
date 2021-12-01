@@ -36,7 +36,7 @@ const Selection = () => {
         if (user_name) {
             navigate(`/quizPage/${category}`)
         } else {
-            setError2('Please Provide Your Name')
+            setError2('Name And Amount Below 20 Are Required')
         }
     }
 
@@ -76,8 +76,8 @@ const Selection = () => {
             <Navbar getStarted={false} />
 
             <div className="selection-items">
-                <div className="text-center mt-5">
-                    <h4 style={{ color: 'red' }}>{error2}</h4>
+                <div className="text-center mt-5 error2-container">
+                    <h4 className="error2" style={{ color: 'red' }}>{error2}</h4>
                 </div>
                 <form action="">
                     <div>
@@ -103,7 +103,7 @@ const Selection = () => {
 
                     <div className="mt-3">
                         <label htmlFor="amount" className="form-label">Amount Of Questions</label>
-                        <input id="amount" className="form-control py-3 px-4 nameInput" type="number" placeholder="Enter Amount" value={question_amount} onChange={handleAmount} />
+                        <input id="amount" className="form-control py-3 px-4 nameInput" min="1" max="20" type="number" placeholder="Enter Amount" value={question_amount} onChange={handleAmount} />
                     </div>
 
                     <div className="mt-4">

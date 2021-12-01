@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Selection from "./components/Selection/Selection";
 import QuizPage from "./components/QuizPage/QuizPage";
 import { createContext, useState } from "react";
+import Results from "./components/Results/Results";
 
 export const UserContext = createContext();
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/selection/:category/:apiVal" element={<Selection />} />
             <Route path="/quizPage/:category" element={<QuizPage />}></Route>
+            <Route path="/result" element={ <Results />}></Route>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
