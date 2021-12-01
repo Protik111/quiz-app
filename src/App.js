@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/selection/:category/:apiVal" element={<Selection />} />
-            <Route path="/quizPage" element={<QuizPage />}></Route>
+            <Route path="/quizPage/:category" element={<QuizPage />}></Route>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

@@ -1,8 +1,7 @@
-// .done{
-//     background-color: aqua;
-//     padding: 50px;
-// }
-.undone{
+@import '../../Styles//Variables';
+
+.quizpage{
+  .undone{
     display: block;
 
 }
@@ -18,3 +17,50 @@
     color: white;
     box-shadow: 0 0 1px black;
   }
+
+  .category-score{
+    display: flex;
+    justify-content: space-between;
+  }
+  .optionBtn{
+    background-color: $header-bg-light;
+    color: $button-color;
+    border: 1px solid $button-bottom;
+    border-radius: 0.3rem;
+
+    &:active {
+      background-color: $header-bg;
+    }
+  }
+  .inactive{
+    background-color: $inactive-color;
+    color: black;
+    border: 1px solid black
+  }
+  .quit-next{
+    display: flex;
+    justify-content: space-around;
+  }
+  .quitBtn{
+    background-color: $quit-btn;
+    color: $button-color;
+    border: 1px solid $button-bottom;
+    border-radius: 0.3rem;
+    transition: all .3s;
+
+    &:hover {
+      background-color: rgb(168, 12, 12);
+    }
+  }
+  .nextBtn {
+    background-color: $next-btn;
+    color: $button-color;
+    border: 1px solid $button-bottom;
+    border-radius: 0.3rem;
+    transition: all .3s;
+
+    &:hover {
+      background-color: rgb(4, 70, 4);
+    }
+  }
+}

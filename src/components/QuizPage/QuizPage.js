@@ -5,14 +5,24 @@ import Navbar from '../Navbar/Navbar';
 import { Box } from "@mui/system";
 import LinearProgress from '@mui/material/LinearProgress';
 import './QuizPage.scss';
+import { useNavigate, useParams } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { handleAmountChange, handleCategoryChange, handleDifficultyChange } from '../../redux/Questions/Questions.action';
 
 const QuizPage = () => {
     const [allOptions, setAllOptions] = useState([]);
     const [index, setIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [selected, setSelected] = useState();
+    const [err, setErr] = useState('');
 
-    const { question_category, question_difficulty, question_amount } = useSelector(state => state);
+    const { category } = useParams();
+    const navigate = useNavigate();
+
+    const { question_category, question_difficulty, question_amount, user_name } = useSelector(state => state);
+    const dispatch = useDispatch();
+
 
     const { response, error, loading } = useFetch({ url: `/api.php?amount=${question_amount}&category=${question_category}&difficulty=${question_difficulty}` });
 
@@ -50,36 +60,97 @@ const QuizPage = () => {
     }
 
     const handleCorrect = (e) => {
+        setErr('');
+
         console.log(e.target.textContent);
         setSelected(e.target.textContent);
 
-        if(e.target.textContent ===  response.results[index].correct_answer){
-            setScore(score+1);
+        if(selected){            
+            if (e.target.textContent === response.results[index].correct_answer) {
+                setScore(score + 1);
+            }
         }
     }
 
+
     const handleSelectedColor = (selectedValue) => {
         console.log(selectedValue, 'e.target.textContent')
-        // if(selected === selectedValue && selectedValue === response.results[index].correct_answer) {
-        //     return "rightAnswer";
-        // }else if(selected === selectedValue && selectedValue ==! response.results[index].correct_answer){
-        //     return "wrongAnswer";
-        // }else if(selected = selectedValue){
-        //     return "rightAnswer";
-        // }
+        if (selected === selectedValue && selectedValue === response.results[index].correct_answer) {
+            return "rightAnswer";
+        } else if (selected === selectedValue && selectedValue == !response.results[index].correct_answer) {
+            return "wrongAnswer";
+        } else if (selected = selectedValue) {
+            return "rightAnswer";
+        }
+    }
+
+
+    const handleQuit = () => {
+        // useFetch({ url : '/api_category.php'})
+        // dis
+        // dispatch(handleCategoryChange(null));
+        // dispatch(handleDifficultyChange(''));
+        // dispatch(handleAmountChange(null));
+        navigate('/');
+    }
+
+    const handleNext = () => {
+        if (selected) {
+            console.log('ds')
+        } else {
+            setErr("Select A Option Then Click Next");
+        }
     }
 
     console.log(score, 'score');
     console.log(selected, 'selected');
 
     return (
-        <div>
+        <div className="quizpage">
             <Navbar quizPage={true} />
-            <h3>THis is quiz </h3>
 
-            {response.results[index].question}
+            <div className="category-score container mt-5">
+                <div>
+                    <h2>{category}</h2>
+                </div>
+                <div>
+                    <h2>Score :</h2>
+                </div>
+            </div>
 
-            {allOptions.map((option, i) => <button className={`undone ${selected && handleSelectedColor(selected)}`} key={i} value={i} onClick={handleCorrect}>{option}</button>)}
+            <div className="text-center mt-4">
+                <h4>{index + 1 + ") "}
+                    {response.results[index].question}</h4>
+            </div>
+            <div className="d-flex justify-content-center">
+                <hr className="w-75" style={{ color: 'red' }} />
+            </div>
+
+            <div className="text-center mt-2">
+                <h4 style={{ color: 'red' }}>{err}</h4>
+            </div>
+
+            <div className="row text-center d-flex justify-content-center">
+                {allOptions.map((option, i) => <button
+                    className={`undone col-lg-5 col-sm-10 m-4 optionBtn py-2 ${selected ? 'inactive' : ''}`}
+                    // ${selected && handleSelectedColor(selected)}
+                    // style={selected === response.results[index].correct_answer ? { backgroundColor: 'red' } : {}}
+                    key={i}
+                    value={i}
+                    onClick={handleCorrect}
+                    disabled={selected}
+                >{option}
+                </button>)}
+            </div>
+
+            <div className="quit-next container mt-3">
+                <div>
+                    <button onClick={handleQuit} className="px-5 py-lg-3 quitBtn">Quit Quiz</button>
+                </div>
+                <div>
+                    <button onClick={handleNext} className="px-5 py-lg-3 nextBtn">Next Question</button>
+                </div>
+            </div>
 
         </div>
     );

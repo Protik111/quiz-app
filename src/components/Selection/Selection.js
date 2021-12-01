@@ -34,7 +34,7 @@ const Selection = () => {
 
     const handleStart = () => {
         if (user_name) {
-            navigate('/quizPage')
+            navigate(`/quizPage/${category}`)
         } else {
             setError2('Please Provide Your Name')
         }
