@@ -6,7 +6,7 @@ import logo from '../../images/logo.png';
 import exam from '../../images/results-bg.png';
 
 const Results = () => {
-    const { total_score, question_amount } = useSelector(state => state);
+    const { total_score, question_amount, question_category } = useSelector(state => state);
     return (
         <div className="results">
             <Navbar quizPage={true} />
@@ -22,8 +22,8 @@ const Results = () => {
                 </div>
                 <div className="container row">
                     <div className="col-lg-6 col-md-6 mt-5 text-center successfull">
-                        <h4 className="mt-5 offset-lg-4 offset-sm-0">You've successfully completed your quiz <br /> in Computer Topic.</h4>
-                        <h5 className="offset-lg-4 mt-3" style={{ color: 'green' }}>Your score is 12/12</h5>
+                        <h4 className="mt-5 offset-lg-4 offset-sm-0">You've successfully completed your quiz <br /> in Quiz Time.</h4>
+                        <h5 className="offset-lg-4 mt-3" style={{ color: 'green' }}>Your score is {total_score} / {question_amount}</h5>
                     </div>
                     <div className="col-lg-6 col-md-6 text-center">
                         <img className="exam-img" src={exam} alt="" />

@@ -78,6 +78,7 @@ const QuizPage = () => {
 
     const handleQuit = () => {
         setIndex(0);
+        dispatch(handleChangeScore(0));
         navigate('/');
     }
 
