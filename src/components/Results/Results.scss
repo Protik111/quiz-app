@@ -1,0 +1,49 @@
+@import '../../Styles/Variables';
+
+.results {
+    .total-score{
+        @media (max-width: 488px){
+            margin-top: 6rem;
+        }
+    }
+    .certificate{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgb(172, 119, 119);
+        // width: 90%;
+        margin: 0 7rem;
+        border-radius: 3px;
+
+        @media (max-width: 974px) {
+            margin: 0 1rem;
+        }
+
+        .certificate-logo{
+            width: 5.7rem;
+            height: 5.5rem;
+        }
+        .congrats{
+            color: orangered
+        }
+        .exam-img{
+            width: 26rem;
+            height: 26rem;
+
+            @media (max-width : 488px){
+                width: 20rem;
+                height: 20rem;
+            }
+        }
+        .successfull{
+            // margin-left: 13rem;
+            // margin-top: 8rem;
+
+            @media (max-width: 1098px){
+                margin: 0;
+            }
+        }
+    }
+    
+}

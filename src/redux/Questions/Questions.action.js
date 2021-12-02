@@ -27,3 +27,10 @@ export const handleChangeName = payload => {
         payload
     }
 }
+
+export const handleChangeScore = payload => {
+    return {
+        type: ActionTypes.CHANGE_SCORE,
+        payload
+    }
+}

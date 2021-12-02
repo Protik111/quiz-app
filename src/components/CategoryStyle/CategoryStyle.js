@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './CategoryStyle.scss';
 
 const CategoryStyle = (props) => {
-    const { id, name, image, apiVal } = props.category;
+    const { name, image, apiVal } = props.category;
     const color = props.colors;
 
     const categoryBackStyle = {

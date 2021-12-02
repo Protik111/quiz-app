@@ -6,27 +6,25 @@ import { Box } from "@mui/system";
 import LinearProgress from '@mui/material/LinearProgress';
 import './QuizPage.scss';
 import { useNavigate, useParams } from 'react-router';
-import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { handleAmountChange, handleCategoryChange, handleDifficultyChange } from '../../redux/Questions/Questions.action';
+import { handleChangeScore } from '../../redux/Questions/Questions.action';
 
 const QuizPage = () => {
     const [allOptions, setAllOptions] = useState([]);
     const [index, setIndex] = useState(0);
-    const [score, setScore] = useState(0);
     const [selected, setSelected] = useState();
     const [err, setErr] = useState('');
 
     const { category } = useParams();
     const navigate = useNavigate();
 
-    const { question_category, question_difficulty, question_amount, user_name } = useSelector(state => state);
+    const { question_category, question_difficulty, question_amount, total_score } = useSelector(state => state);
     const dispatch = useDispatch();
 
 
-    const { response, error, loading } = useFetch({ url: `/api.php?amount=${question_amount}&category=${question_category}&difficulty=${question_difficulty}` });
+    const { response, loading } = useFetch({ url: `/api.php?amount=${question_amount}&category=${question_category}&difficulty=${question_difficulty}` });
 
-    console.log(response, error, loading, 'response, error, loading from quizpage');
+    // console.log(response, error, loading, 'response, error, loading from quizpage');
     // console.log(question_category, question_difficulty, question_amount, 'question_category, question_difficulty, question_amount');
 
     const randomOptions = (incorrectAns) => {
@@ -37,18 +35,13 @@ const QuizPage = () => {
     useEffect(() => {
         if (response?.results.length) {
             const question = response.results[index];
-            // console.log(question, 'question');
 
             const options = [...question.incorrect_answers];
-            console.log(options, options.length, question.correct_answer, 'all');
 
             options.splice(randomOptions(options.length), 0, question.correct_answer);
             setAllOptions(options);
         }
     }, [response, index])
-
-    console.log(allOptions, 'allOptions');
-
 
 
     if (loading) {
@@ -63,13 +56,9 @@ const QuizPage = () => {
         setSelected(e.target.textContent);
 
         if (e.target.textContent === response.results[index].correct_answer) {
-            setScore(score + 1);
-            console.log('inside score')
+            dispatch(handleChangeScore(total_score + 1));
         }
         setErr('');
-
-        // console.log(e.target.textContent, 'e.target.textContent');
-
     }
 
 
@@ -105,9 +94,6 @@ const QuizPage = () => {
         }
     }
 
-    console.log(score, 'score');
-    console.log(selected, 'selected');
-
     return (
         <div className="quizpage">
             <Navbar quizPage={true} />
@@ -117,7 +103,7 @@ const QuizPage = () => {
                     <h2>Topic : {category}</h2>
                 </div>
                 <div>
-                    <h2>Score : {score}/{" "+ question_amount}</h2>
+                    <h2>Score : {total_score}/{" "+ question_amount}</h2>
                 </div>
             </div>
 

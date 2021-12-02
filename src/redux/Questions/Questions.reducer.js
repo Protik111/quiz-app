@@ -4,7 +4,8 @@ let initialState = {
     question_category: 15,
     question_difficulty: 'easy',
     question_amount: 10,
-    user_name: ''
+    user_name: '',
+    total_score: 0
 }
 
 const questionReducer = (state = initialState, action) => {
@@ -28,6 +29,11 @@ const questionReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user_name: action.payload
+            }
+        case ActionTypes.CHANGE_SCORE :
+            return {
+                ...state,
+                total_score: action.payload
             }
         default :
             return state;

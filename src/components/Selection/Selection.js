@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Selection.scss';
 import Navbar from '../Navbar/Navbar';
 import { useNavigate, useParams } from 'react-router';
-import { UserContext } from '../../App';
 import useFetch from '../../hooks/useFetch';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box } from "@mui/system";
@@ -18,17 +17,15 @@ import { handleCategoryChange,
 
 
 const Selection = () => {
+    const [error2, setError2] = useState('');
+    const { category, apiVal } = useParams();
+    
     const dispatch = useDispatch();
     const { question_amount, user_name } = useSelector(state => state);
 
-    // const [name, setName] = useContext(UserContext);
-    const [error2, setError2] = useState('');
-
-    const { category, apiVal } = useParams();
-
     useEffect(() => {
         dispatch(handleCategoryChange(apiVal));
-    }, [apiVal]);
+    }, [apiVal, dispatch]);
 
     const navigate = useNavigate();
 
@@ -40,7 +37,7 @@ const Selection = () => {
         }
     }
 
-    const { response, error, loading } = useFetch({ url: '/api_category.php' });
+    const { loading } = useFetch({ url: '/api_category.php' });
 
     if (loading) {
         return (
@@ -65,7 +62,6 @@ const Selection = () => {
     }
 
     const handleCategory = (e) => {
-        console.log('click', (e.target.value));
         dispatch(handleCategoryChange(e.target.value))
     }
 

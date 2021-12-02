@@ -2,7 +2,6 @@ import React from 'react';
 import '../Navbar/Navbar.scss';
 import logo from '../../images/logo.png';
 import { FcNext } from 'react-icons/fc';
-import { HiMenuAlt1 } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -17,7 +16,7 @@ const Navbar = (props) => {
             </NavLink>
             <div>
                 <input type="checkbox" name="" id="menu-check" className="menu-check" />
-                <label for="menu-check" className="hamberger">
+                <label htmlFor="menu-check" className="hamberger">
                     {/* <HiMenuAlt1 className="hamberger-icon"></HiMenuAlt1> */}
                     <i className="fas fa-bars"></i>
                 </label>
