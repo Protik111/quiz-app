@@ -4,10 +4,11 @@ import logo from '../../images/logo.png';
 import { FcNext } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { handleChangeScore } from '../../redux/Questions/Questions.action';
+import { handleCategoryChange, handleChangeScore, handleChangeName } from '../../redux/Questions/Questions.action';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = (props) => {
-    const {getStarted, quizPage} = props;
+    const { getStarted, quizPage } = props;
 
     const dispatch = useDispatch();
 
@@ -16,6 +17,8 @@ const Navbar = (props) => {
 
     const handleToHome = () => {
         dispatch(handleChangeScore(0));
+        dispatch(handleCategoryChange(null));
+        dispatch(handleChangeName(''))
         navigate('/');
     }
     return (
@@ -31,11 +34,13 @@ const Navbar = (props) => {
                 </label>
             </div>
             <ul className={`${getStarted} === ${false} ? getStartedWith : ''`}>
-                <li><a href="#results">Results</a></li>
+                <NavLink to="/result">
+                    <li><a href="#results">Results</a></li>
+                </NavLink>
                 {
-                    quizPage  === true ? 
-                    <li><a href="#get started" className="user-name">{user_name}</a></li> : 
-                    <li><a href="#get started" onClick={() => alert("Please Choose Options And Start.")}>Get Started<FcNext></FcNext></a></li>
+                    quizPage === true ?
+                        <li className="user-name"><a href="#get started" disabled={user_name} className="user-name">{user_name}</a></li> :
+                        <li><a href="#get started" onClick={() => alert("Please Choose Options And Start.")}>Get Started<FcNext></FcNext></a></li>
                 }
             </ul>
         </nav>

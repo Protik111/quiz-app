@@ -6,7 +6,7 @@ import logo from '../../images/logo.png';
 import exam from '../../images/results-bg.png';
 
 const Results = () => {
-    const { total_score, question_amount, question_category } = useSelector(state => state);
+    const { total_score, question_amount, user_name } = useSelector(state => state);
     return (
         <div className="results">
             <Navbar quizPage={true} />
@@ -18,7 +18,7 @@ const Results = () => {
                     <img className="certificate-logo" src={logo} alt="" />
                 </div>
                 <div>
-                    <h3><span className="congrats">Cogratulations! </span> Protik</h3>
+                    <h3><span className="congrats">Cogratulations! </span>{user_name}</h3>
                 </div>
                 <div className="container row">
                     <div className="col-lg-6 col-md-6 mt-5 text-center successfull">

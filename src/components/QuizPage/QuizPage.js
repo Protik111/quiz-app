@@ -8,6 +8,7 @@ import './QuizPage.scss';
 import { useNavigate, useParams } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { handleChangeScore } from '../../redux/Questions/Questions.action';
+import {decode} from 'html-entities';
 
 const QuizPage = () => {
     const [allOptions, setAllOptions] = useState([]);
@@ -40,6 +41,9 @@ const QuizPage = () => {
 
             options.splice(randomOptions(options.length), 0, question.correct_answer);
             setAllOptions(options);
+            if (index === 0) {
+                dispatch(handleChangeScore(0));
+            }
         }
     }, [response, index])
 
@@ -104,13 +108,13 @@ const QuizPage = () => {
                     <h2>Topic : {category}</h2>
                 </div>
                 <div>
-                    <h2>Score : {total_score}/{" "+ question_amount}</h2>
+                    <h2>Score : {total_score}/{" " + question_amount}</h2>
                 </div>
             </div>
 
             <div className="text-center mt-4">
                 <h4>{index + 1 + ") "}
-                    {response.results[index].question}</h4>
+                    {decode(response.results[index].question)}</h4>
             </div>
             <div className="d-flex justify-content-center">
                 <hr className="w-75" style={{ color: 'red' }} />
@@ -129,7 +133,7 @@ const QuizPage = () => {
                     value={i}
                     onClick={handleCorrect}
                     disabled={selected}
-                >{option}
+                >{decode(option)}
                 </button>)}
             </div>
 
