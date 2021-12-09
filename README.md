@@ -2,6 +2,8 @@
 
 It is an quiz based web application to test his/her knowledge. Anyone can test his/her knowledge in **Animal, Computers, Gadget, History, Mathmatics, Geography** etc topics.
 
+## Live Link: (https://vigilant-bohr-00ef18.netlify.app/)
+
 # App Preview
 
 ![Project Preview](./src/images/demo.png)
@@ -19,6 +21,4 @@ It is an quiz based web application to test his/her knowledge. Anyone can test h
 - React Icon
 - Material UI
 - Trivia Api
-
-## Live Link: (https://vigilant-bohr-00ef18.netlify.app/)
 
